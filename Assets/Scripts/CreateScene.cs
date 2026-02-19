@@ -24,6 +24,11 @@ public class CreateScene : MonoBehaviour
         CreateCelestial();
     }
 
+    private void Update()
+    {
+        MoveCelestialBody();
+    }
+
     void InstantiateVariable()
     {
         if (pyramidSize < 3)
@@ -87,12 +92,12 @@ public class CreateScene : MonoBehaviour
     {
         celestialBody = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         celestialBody.transform.position = new Vector3(0f, 10f, 0f);
-
     }
 
     void MoveCelestialBody()
     {
-
+        float rotationSpeed = 45;
+        celestialBody.transform.eulerAngles += new Vector3(1f, 1f) * Time.deltaTime * rotationSpeed;
     }
 
 }

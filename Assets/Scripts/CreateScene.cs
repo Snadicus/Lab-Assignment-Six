@@ -13,7 +13,9 @@ public class CreateScene : MonoBehaviour
     public GameObject[] trees;
     public GameObject[] stones;
     public GameObject celestialBody;
-
+    private float angle = 0f;
+    private float orbitRadius = 30f;
+    private float orbitSpeed = 0.5f;
 
     void Start()
     {
@@ -94,10 +96,15 @@ public class CreateScene : MonoBehaviour
         celestialBody.transform.position = new Vector3(0f, 10f, 0f);
     }
 
+    // Moving the Celestial Body in a circle around the ground
     void MoveCelestialBody()
     {
-        float rotationSpeed = 45;
-        celestialBody.transform.eulerAngles += new Vector3(1f, 1f) * Time.deltaTime * rotationSpeed;
+        angle += orbitSpeed * Time.deltaTime;
+
+        float x = Mathf.Cos(angle) * orbitRadius;
+        float y = Mathf.Sin(angle) * orbitRadius;
+
+        celestialBody.transform.position = new Vector3(x, y, 0f);
     }
 
 }

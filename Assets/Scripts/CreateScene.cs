@@ -13,9 +13,6 @@ public class CreateScene : MonoBehaviour
     [Range(3,10)] public int pyramidSize;
     public bool dayNight;
 
-    // Calculating object
-    private float pyramidWidth;
-
 
     // Parent objects
     private GameObject treeParent;
@@ -50,9 +47,6 @@ public class CreateScene : MonoBehaviour
         // Create empty game objects to house trees and stones
         treeParent = new GameObject("Trees");
         stoneParent = new GameObject("Stones");
-
-        // Get width of pyramid so trees do not spawn in it
-        pyramidWidth = pyramidSize * 1.1f + 1;
     }
 
     void CreateGround()
@@ -80,7 +74,7 @@ public class CreateScene : MonoBehaviour
             tree.name = "Tree " + i;
 
             tree.transform.localScale = new Vector3(UnityEngine.Random.Range(0.5f, 2f), UnityEngine.Random.Range(0.5f, 2f), UnityEngine.Random.Range(0.5f, 2f));
-            tree.transform.position = new Vector3(UnityEngine.Random.Range(-pyramidWidth, -forestSize), 1f * tree.transform.localScale.y, UnityEngine.Random.Range(-pyramidWidth, -forestSize));
+            tree.transform.position = new Vector3(UnityEngine.Random.Range(- 1, -Mathf.Abs(forestSize) - 1), 1f * tree.transform.localScale.y, UnityEngine.Random.Range(- 1,  (-Mathf.Abs(forestSize))));
         }
     }
 
@@ -115,6 +109,8 @@ public class CreateScene : MonoBehaviour
         celestialBody = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         celestialBody.name = "Celestial Body";
         celestialBody.transform.position = new Vector3(0f, 10f, 0f);
+        celestialBody.transform.localScale = new Vector3(3, 3, 3);
+        celestialBody.transform.rotation = Quaternion.Euler(90, 0, 0);
         Renderer rend = celestialBody.GetComponent<Renderer>();
         Light lightComp = celestialBody.AddComponent<Light>();
 

@@ -94,6 +94,25 @@ public class CreateScene : MonoBehaviour
     {
         celestialBody = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         celestialBody.transform.position = new Vector3(0f, 10f, 0f);
+        Renderer rend = celestialBody.GetComponent<Renderer>();
+        Light lightComp = celestialBody.AddComponent<Light>();
+
+        if (dayNight == true)
+        {
+            // Daylight Settings
+            rend.material.color = Color.yellow;
+            lightComp.type = LightType.Directional;
+            lightComp.color = Color.white;
+            lightComp.intensity = 1.2f;
+
+        } else
+        {
+            // Nighttime Settngs
+            rend.material.color = Color.grey;
+            lightComp.type = LightType.Directional;
+            lightComp.color = new Color(0.4f, 0.4f, 0.6f);
+            lightComp.intensity = 0.3f;
+        }
     }
 
     // Moving the Celestial Body in a circle around the ground

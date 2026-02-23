@@ -52,7 +52,7 @@ public class CreateScene : MonoBehaviour
         stoneParent = new GameObject("Stones");
 
         // Get width of pyramid so trees do not spawn in it
-        pyramidWidth = (pyramidSize * 0.5f) * 1.1f + 1;
+        pyramidWidth = pyramidSize * 1.1f + 1;
     }
 
     void CreateGround()
@@ -79,8 +79,8 @@ public class CreateScene : MonoBehaviour
             rend.material.color = Color.green;
             tree.name = "Tree " + i;
 
-            tree.transform.localScale = new Vector3(UnityEngine.Random.Range(0.5f, 3f), UnityEngine.Random.Range(0.5f, 3f), UnityEngine.Random.Range(0.5f, 3f));
-            tree.transform.position = new Vector3(UnityEngine.Random.Range(pyramidWidth, forestSize), 1f * tree.transform.localScale.y, UnityEngine.Random.Range(pyramidWidth, forestSize));
+            tree.transform.localScale = new Vector3(UnityEngine.Random.Range(0.5f, 2f), UnityEngine.Random.Range(0.5f, 2f), UnityEngine.Random.Range(0.5f, 2f));
+            tree.transform.position = new Vector3(UnityEngine.Random.Range(-pyramidWidth, -forestSize), 1f * tree.transform.localScale.y, UnityEngine.Random.Range(-pyramidWidth, -forestSize));
         }
     }
 
